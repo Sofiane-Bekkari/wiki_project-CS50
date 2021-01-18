@@ -1,0 +1,28 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia | {{ name }}
+{% endblock %}
+
+{% block body %}
+
+<h1>Edit this entry</h1>
+<!--CREATE PAGE CONTENT-->
+
+<div class="container">
+    <form action="" method="POST">
+          <!--CSRF-->
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="title">Enter a title</label>
+              <input type="text" name="title" value="{{name}}" class="form-control">
+              <label for="textarea">Enter an entry</label>
+              <!--TEXTAREA-->
+              <textarea class="form-control" name="new_entry" id="wiki">
+                {{ content }}
+              </textarea>
+          </div>
+                <input class="btn btn-primary btn-sm" type="submit"  value="Save">
+          </form>
+        </div>
+{% endblock %}

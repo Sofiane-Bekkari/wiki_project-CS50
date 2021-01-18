@@ -1,0 +1,61 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia | {{ name }}
+{% endblock %}
+
+{% block body %}
+   
+{% if get == None %}
+
+    {% if error %}
+
+    <div class="container mt-5">
+        <div class="alert alert-danger">
+
+            <h6><b>{{ error}}</b> is already exist!</h6>
+        </div>
+        <ul class="error">
+            <li class="link-item">Please try to create a new entry</li>
+            <li class="link-item">Try to cearte an entry that doesn't exist</li>
+            <li class="link-item">Go to home page to see all entries</li>
+        </ul>
+    </div>
+
+    {% else %}
+    {{ fill }}
+    <h1>Create a new entry</h1>
+    <!--CREATE PAGE CONTENT-->
+    <div class="container">
+        <form action="{% url 'encyclopedia:newpage' %}" method="POST">
+            <!--CSRF-->
+            {% csrf_token %}
+            <div class="form-group box-1">
+                <div class="form-group">
+                    <label for="title">Enter a title</label>
+                    <input type="text" name="title" class="form-control">
+                </div>
+                <label for="textarea">Enter an entry</label>
+                <!--TEXTAREA-->
+                    <textarea class="form-control" name="new_entry" id="wiki"   >
+                    </textarea>
+                    <div class="form-group btn-save">
+                        <input class="btn btn-primary btn-sm" type="submit"  value="Save">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    {% endif %}
+
+{% else %}
+
+<h1>{{ name }}</h1> 
+
+        <p>{{ get }}</p>
+        <br>
+        <a href="edit" id="link" class="btn btn-secondary btn-sm">Edit</a>
+
+    {% endif %}
+
+{% endblock %}

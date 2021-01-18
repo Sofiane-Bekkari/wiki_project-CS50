@@ -1,0 +1,33 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia | All Entry
+{% endblock %}
+
+{% block body %}
+    <h1>All Pages</h1>
+    <ul>
+        {% for l in lists %}
+
+            <li class="all-items"><a href="{{ l }}">{{ l }}</a></li>
+
+        {% empty %}
+
+            <li>Sorry No Entry for now!</li>
+
+        {% endfor %}
+
+        <h1>{{ name }}</h1> 
+        
+        {% if get == None %}
+    
+            <h1></h1>
+    
+        {% else %}
+    
+            <p>{{ get }}</p>
+    
+        {% endif %}
+    </ul>
+
+{% endblock %}

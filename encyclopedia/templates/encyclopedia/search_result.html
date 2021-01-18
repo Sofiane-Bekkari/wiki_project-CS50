@@ -1,0 +1,36 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia | Result for {{ query }}
+{% endblock %}
+
+{% block body %}
+
+    {% if empty == False %}
+        <h1 class="mt-5">Sorry page not found..</h1>
+        <ul class="error">
+            <li class="link-item">Please search for a new entry</li>
+            <li class="link-item">Create a new entry</li>
+            <li class="link-item">Go to home page to see all entries</li>
+        </ul>
+    {% else %}
+
+        <p class="ml-3 mt-5">Search result for <b>"{{ query }}"</b>!</p>
+        {% for s in list %}
+            <li class="m-3">
+                <a href="{{ s }}">{{ s }}</a>
+            </li>
+        {% endfor %}
+
+        {% if moreLetter == query %}
+            {% for d in entry %}
+                <li>
+                    {{ d }}
+                </li>
+            {% endfor %}
+        {% endif %}
+
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'encyclopedia/main.css'%}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    </head>
+    <body>
+        <section>
+            <!--the whole row-->
+            <div class="row">
+                <div class="sidebar col-12 col-md-3">
+                    <h1 id="main-title">Wiki</h1>
+                    <form action="{% url 'encyclopedia:search' %}" method="GET">
+                        <div class="form-group">
+                            <input class="search " type="text" name="search" placeholder="Search Encyclopedia...">
+                        </div>
+                    </form>
+                    <!-- buttons -->
+                    <div class="d-flex justify-content-center btns">
+                        <div class="home-link">
+                            <a href="{% url 'encyclopedia:index' %}">Home</a>
+                        </div>
+                        <div class="">
+                            <a href="{% url 'encyclopedia:newpage' %}">
+                                Create New Page
+                            </a>
+                        </div>
+                        <div class="">
+                            <a href="">
+                                Random Page
+                            </a>
+                        </div>
+                    </div>
+                    <!--end buttons-->
+                    {% block nav %}
+                    {% endblock %}
+                </div>
+                <!--The main block-->
+                <div class="main col-12 col-md-9">
+                    <div class="container">
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <!--The end of main block-->
+            </div>
+            <!--end of the whole row-->  
+        </section>
+    </body>
+</html>
