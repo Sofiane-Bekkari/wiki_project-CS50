@@ -101,16 +101,16 @@ def searchBar(request):
 
         # see if q containe first letter in the entries
         for q in entry:
-            if q.startswith(query) and len(query) > 1 :
-                print('Is more then 1 letter!!!!')
-                moreLetter = query
-                print(moreLetter)
-
-                return render(request,"encyclopedia/search_result.html",    {
+            #Check if it more than 1 letter
+            if q.startswith(query) and len(query) > 1:
+                moreLetter = q
+                
+                return render(request,"encyclopedia/search_result.html",{
                 "moreLetter": moreLetter ,
                 "entry": entry,        
                 "query": query
                 })
+
             elif q.startswith(query) and not query == '':
                 print('PLEASE STRAT HERE!!!!')
                 searchList = []
@@ -142,16 +142,12 @@ def searchBar(request):
                         return render(request,"encyclopedia/search.html",{
                         "query": query,        
                         "q": getTitle 
-
-                    })
-         
+                    }) 
             
     return render(request,"encyclopedia/search_result.html",{
     "query": query,
     "entry": entry,
     "empty": empty        
-    
-            
     })
 
 

@@ -23,17 +23,15 @@ code {
     margin-top: 2rem;
     letter-spacing: 5px;
 }
-.search {
+input.search {
     background-color: #f0f0f0;
     border-radius: 2px;
-    border: solid 1px gray;
+    border: none;
     margin: .5rem 1rem;
-    padding: .3rem .5rem;
+    padding: .5rem .5rem;
     font-size: 18px;
-    width: 60%;
-}
-.search:focus{
-    outline: indigo;
+    width: 70%;
+    outline-color: rgb(99, 156, 209);
 }
 .sidebar a {
     font-size: 18px;
@@ -52,6 +50,12 @@ code {
     /*border: solid rebeccapurple !important;*/
 }
 
+.search.container {
+    margin-top: 4.5rem;
+}
+li.m-3 {
+    font-size: 1.4rem;
+}
 ul.error {
     padding: 0;
     width: 300px;
@@ -109,16 +113,25 @@ textarea {
         margin-top: 2.5rem;
         font-size: 2.5rem;
     }
+    .content-text {
+        font-size: 1.3rem;
+    }
     .box-1 {
+        padding: 2rem 0 0 0;
         margin: 0 auto;
         width: 100%;
     }
     label {
+        font-size: 1.5rem;
+        font: 800;
+    }
+    input.in-text, textarea.in-text {
         font-size: 1.3rem;
+        color: #555;
     }
     .btn.btn-sm {
         padding: .5rem 1rem;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         letter-spacing: 2px;
         font-weight: 800;
         font-family: Verdana, Geneva, Tahoma, sans-serif !important;

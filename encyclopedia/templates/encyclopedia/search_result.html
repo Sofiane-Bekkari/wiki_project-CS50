@@ -14,21 +14,20 @@
             <li class="link-item">Go to home page to see all entries</li>
         </ul>
     {% else %}
-
-        <p class="ml-3 mt-5">Search result for <b>"{{ query }}"</b>!</p>
-        {% for s in list %}
+        <div class="search container">
+            <h4 class="ml-3 mt-5">Search result for <b>"{{ query }}"</b>!</h4>
+            {% for s in list %}
             <li class="m-3">
                 <a href="{{ s }}">{{ s }}</a>
             </li>
-        {% endfor %}
-
-        {% if moreLetter == query %}
-            {% for d in entry %}
-                <li>
-                    {{ d }}
-                </li>
             {% endfor %}
-        {% endif %}
+            
+                {% if moreLetter in entry %}
+                <li>
+                    <a href="{{ moreLetter }}">{{ moreLetter }}</a>
+                </li>
+                {% endif %}
+        </div>
 
     {% endif %}
 
