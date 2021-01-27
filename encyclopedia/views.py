@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django import forms
+import random
 import requests 
 # Fro redirect
 from django.http import HttpResponseRedirect
@@ -27,7 +27,8 @@ def LowerEntries():
         for e in entry:
             e_low.append(e.capitalize())
     
-    return e_low
+    return e_low 
+
 
 
 def index(request):
@@ -66,14 +67,12 @@ def new_page(request):
         textEntry = request.POST.get('title').capitalize()
         contentEntry = request.POST.get('new_entry')
 
-
         try:
             error = textEntry
 
             if textEntry in allEntries:
                 print('Yes is containe', textEntry)
                 raise Exception('There the same entry!')
-
         except:
                 return render(request, 'encyclopedia/info.html',{
                     "error": error,
@@ -83,12 +82,10 @@ def new_page(request):
 
         return HttpResponseRedirect( reverse("encyclopedia:index"))
 
-
    
     return render(request, 'encyclopedia/info.html',{
         "name":name
     })
-
 
 
 
@@ -106,7 +103,7 @@ def searchBar(request):
                 moreLetter = q
                 
                 return render(request,"encyclopedia/search_result.html",{
-                "moreLetter": moreLetter ,
+                "moreLetter": moreLetter,
                 "entry": entry,        
                 "query": query
                 })
@@ -123,7 +120,6 @@ def searchBar(request):
                     if s == entry[x][0] and len(s) < 2:
                         d = entry[x]
                         searchList.append(d)
-                        print("S VAR:", s, "I NUM:", x)
 
                 print('IS MATCH:',searchList)
                 return render(request,"encyclopedia/search_result.html",    {
@@ -160,6 +156,22 @@ def getPage(request, name):
     return render(request, "encyclopedia/info.html",{
         "get": get,
         "name": name
+
+    })
+
+#Random 
+def randomPage(request):
+    entry = MyEntries()
+    ran = random.choice(entry)
+    get = util.get_entry(ran)
+    name = get
+    print(ran)
+
+    return render(request, "encyclopedia/random.html",{
+        "get": name,
+        "name": ran,
+        "title": ran,
+        "content": get
     })
 
 
