@@ -1,15 +1,14 @@
 from django.shortcuts import render
 import random
+from markdown2 import Markdown
 import requests 
-# Fro redirect
 from django.http import HttpResponseRedirect
-# fro reverse
 from django.urls import reverse
 
 from . import util
 
 
-
+###FUNCTIONS###
 #Global entries Function
 def MyEntries():
     entries_list = {"entries": util.list_entries()}
@@ -29,6 +28,7 @@ def LowerEntries():
     
     return e_low 
 
+###END###
 
 
 def index(request):
@@ -152,9 +152,12 @@ def getPage(request, name):
    
     #entry = MyEntries()
     get = util.get_entry(name)
+    marker = Markdown()
+    html_convert = marker.convert(get)
+   
     
     return render(request, "encyclopedia/info.html",{
-        "get": get,
+        "get": html_convert,
         "name": name
 
     })
@@ -165,7 +168,6 @@ def randomPage(request):
     ran = random.choice(entry)
     get = util.get_entry(ran)
     name = get
-    print(ran)
 
     return render(request, "encyclopedia/random.html",{
         "get": name,
@@ -175,4 +177,9 @@ def randomPage(request):
     })
 
 
-
+## Filter Function 
+def myFilter(y):
+    if not y:
+        return False
+    else:
+        return True
